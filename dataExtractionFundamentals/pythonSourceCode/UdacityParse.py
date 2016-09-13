@@ -13,80 +13,68 @@ import sys
 DATADIR = "/Users/Menfi/Documents/gitBaseDirectory/MongoDB/dataExtractionFundamentals/dataFiles"
 DATAFILE = "beatles-diskography.csv"
 RECNO = 0
-keyValuePairList = []
+data = []
+
 
 def buildHeaderList(headerLine):
     print("Begin buildHeaderList function")
-    print ("\tfirstLine is %s", headerLine.strip())
+    print ("\theaderLine is -> {}".format(headerLine.strip()))
     #split the string return a list
     headerList = headerLine.strip().split(',')
-    print ("\theaderList[0] is %s", headerList[0].strip())
-    print ("\theaderList[1] is %s", headerList[1].strip())
-    print ("\theaderList[2] is %s", headerList[2].strip())
-    print ("\theaderList[3] is %s", headerList[3].strip())
-    print ("\theaderList[4] is %s", headerList[4].strip())
-    print ("\theaderList[5] is %s", headerList[5].strip())
-    print ("\theaderList[6] is %s", headerList[6].strip())
+    
+    for index in range(len(headerList)):
+        # print ("\theaderList[%s] is %s", index, headerList[index])
+        print("\theaderList[{}] is {}".format(index, headerList[index]))
+
     print("End buildHeaderList function\n")
     return headerList 
 
-
 def buildMusicList(musicLine):
     print("Begin buildMusicList function")
-    print ("\tmusicLine is %s", musicLine.strip())
+    print ("\tmusicLine is -> {}".format(musicLine.strip()))
     #split the string return a list
-    musicList = musicLine.split(',')
-    print ("\tmusicList[0] is %s", musicList[0].strip())
-    print ("\tmusicList[1] is %s", musicList[1].strip())
-    print ("\tmusicList[2] is %s", musicList[2].strip())
-    print ("\tmusicList[3] is %s", musicList[3].strip())
-    print ("\tmusicList[4] is %s", musicList[4].strip())
-    print ("\tmusicList[5] is %s", musicList[5].strip())
-    print ("\tmusicList[6] is %s", musicList[6].strip())
+    musicList = musicLine.strip().split(',')
+    
+    for index in range(len(musicList)):
+        print("\tmusicList[{}] is {}".format(index, musicList[index]))
+
     print("End buildMusicList function\n")
     return musicList
 
 def buildDictionaryList(headerList, musicList):
     print("Begin buildDictionaryList function")
+    keyValuePairList = []
     #Split Return a list of the words in the string
     
-    print ("\theaderList[0] is %s", headerList[0].strip())
-    print ("\theaderList[1] is %s", headerList[1].strip())
-    print ("\theaderList[2] is %s", headerList[2].strip())
-    print ("\theaderList[3] is %s", headerList[3].strip())
-    print ("\theaderList[4] is %s", headerList[4].strip())
-    print ("\theaderList[5] is %s", headerList[5].strip())
-    print ("\theaderList[6] is %s", headerList[6].strip())
-    
-    print ("\tmusicList[0] is %s", musicList[0].strip())
-    print ("\tmusicList[1] is %s", musicList[1].strip())
-    print ("\tmusicList[2] is %s", musicList[2].strip())
-    print ("\tmusicList[3] is %s", musicList[3].strip())
-    print ("\tmusicList[4] is %s", musicList[4].strip())
-    print ("\tmusicList[5] is %s", musicList[5].strip())
-    print ("\tmusicList[6] is %s", musicList[6].strip())
-    
+    for index in range(len(headerList)):
+        pass
+        # print("\theaderList[{}] is {}".format(index, headerList[index])) 
+    # print()
+
+    for index in range(len(musicList)):
+        pass
+        # print("\tmusicList[{}] is {}".format(index, musicList[index]))
+    #print()
     
     for index in range(len(headerList)):
-        # print ('\t\theaderList is ', headerList[index])
-        # print ('\t\tmusicList  is ', musicList[index])
+        #print ('\t\theaderList is ', headerList[index])
+        #print ('\t\tmusicList  is ', musicList[index])
         keyValuePair = headerList[index] + ": " + musicList[index]
-        print("\t\tkeyValuePair is %s", keyValuePair)
+        print("\t\tkeyValuePair is {}".format(keyValuePair))
+        
         keyValuePairList.append(keyValuePair)
         
-    print("\t\tkeyValuePairList is %s", keyValuePairList)
-
-        
+    print("\t\tkeyValuePairList is {}".format(keyValuePairList))
+    data.append(keyValuePairList)
 
     print("End buildDictionaryList function\n")
-    return musicList
 
 def parse_file(datafile):
     print("\nBegin parse_file(datafile) function\n")
     
     global RECNO
 
-    data = []
+    #data = []
     with open(datafile, "r") as f:
         for line in f:
             #print (RECNO)
@@ -96,13 +84,10 @@ def parse_file(datafile):
             if RECNO == 1:
                 # print ("\tfirst line is %s", line.strip(),"\n")
                 headerList=buildHeaderList(line)
-                # print("\theaderList is %s", headerList)
-            else:
-                # print("11")
-                # print ("\tline is %s", line.strip())
+            elif RECNO < 12:
                 musicList = buildMusicList(line)
-                print("\theaderList is %s", headerList)
-                print ("\tmusicList is %s", musicList)
+                print("\theaderList is {}".format(headerList))
+                print("\tmusicList is {}".format(musicList))
                 print()
                 buildDictionaryList(headerList,musicList)
                  
@@ -117,7 +102,21 @@ def test():
 
     datafile = os.path.join(DATADIR, DATAFILE)
     d = parse_file(datafile)
-    print("..........................%r" % d)
+    #print("..........................{}".format(data[0]))
+    #print("..........................{}".format(data[1]))
+    
+    print("..........................{}".format(d[0]))
+    print("..........................{}".format(d[1]))
+    print("..........................{}".format(d[2]))
+    print("..........................{}".format(d[3]))
+    print("..........................{}".format(d[4]))
+    print("..........................{}".format(d[5]))
+    print("..........................{}".format(d[6]))
+    print("..........................{}".format(d[7]))
+    print("..........................{}".format(d[8]))
+    print("..........................{}".format(d[9]))
+    #print("..........................{}".format(d)
+    
     # firstline = {'Title': 'Please Please Me', 'UK Chart Position': '1', 'Label': 'Parlophone(UK)', 'Released': '22 March 1963', 'US Chart Position': '-', 'RIAA Certification': 'Platinum', 'BPI Certification': 'Gold'}
     # tenthline = {'Title': '', 'UK Chart Position': '1', 'Label': 'Parlophone(UK)', 'Released': '10 July 1964', 'US Chart Position': '-', 'RIAA Certification': '', 'BPI Certification': 'Gold'}
 
@@ -125,8 +124,6 @@ def test():
     # assert d[9] == tenthline
     
     print("End test() function")
-
-
     
 print("\nBegin Udacity Parse Module\n")
 print (sys.version)
