@@ -41,7 +41,7 @@ def parse_file(datafile):
             for fieldNumber, musicFieldData in enumerate (musicDataFields):
                 # print("\tfieldNumber ->\t\t\t\t\t{}".format(fieldNumber))
                 # print("\theaderFields[{}] ->\t\t\t\t{}".format(fieldNumber, headerFields[fieldNumber].strip()))
-                # print("\tfieldNumber -> {}, musicFieldData ->\t\t{}".format(fieldNumber, musicFieldData.strip()))
+                print("\tfieldNumber -> {}, musicFieldData ->\t\t{}".format(fieldNumber, musicFieldData.strip()))
                 
                 #populate the musicDataDictionary for this music data line
                 musicDataDictionary[headerFields[fieldNumber]] = musicFieldData.strip()
@@ -51,7 +51,7 @@ def parse_file(datafile):
                 FIELDNO += 1
 
             data.append(musicDataDictionary)
-            if RECNO == 10:
+            if RECNO == 14:
                 break
 
     return data
