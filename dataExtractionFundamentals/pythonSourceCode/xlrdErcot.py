@@ -32,8 +32,11 @@ def parse_file(datafile):
 
     print("\tBegin parse_file()")
 
+    # instantiate the Book data structure from the .xls file
+    # instantiate the Sheet data structure from the Book class.
     ercotWorkbook = xlrd.open_workbook(datafile)
     ercotSheet0 = ercotWorkbook.sheet_by_index(0)
+    print("\t\tercotWorkbook.__class__.__name__) is {}".format(ercotWorkbook.__class__.__name__)) # Book
     print("\t\tercotSheet0.__class__.__name__) is {}".format(ercotSheet0.__class__.__name__)) # Sheet
 
 
@@ -60,14 +63,14 @@ def parse_file(datafile):
     # print "Convert time to a Python datetime tuple, from the Excel float:",
     # print xlrd.xldate_as_tuple(exceltime, 0)
     
-    print("\t\tercotSheet0.nrows is {}".format(ercotSheet0.nrows))  
-    print("\t\tercotSheet0.ncols is {}\n".format(ercotSheet0.ncols))  
+    print("\t\tercotSheet0.nrows is {}".format(ercotSheet0.nrows))  # 7296
+    print("\t\tercotSheet0.ncols is {}\n".format(ercotSheet0.ncols))  # 10
     
-    print("\t\tgrab first COAST column cell is {}".format(ercotSheet0.cell_value(1, 1)))
+    print("\t\tgrab first COAST column data cell is {}".format(ercotSheet0.cell_value(1, 1)))
     print("\t\tgrab ercotSheet0.cell_value(1, 1).__class__.__name__) is {}".format(ercotSheet0.cell_value(1, 1).__class__.__name__)) # float
-
     print("\t\tgrab last  COAST column cell is {}\n".format(ercotSheet0.cell_value(ercotSheet0.nrows - 1, 1)))
         
+    # iterate through the values, capture largest (max), smallest (min)    
     largestCOASTFloat = 0    
     smallestCOASTFloat = ercotSheet0.cell_value(1, 1)
 
@@ -98,6 +101,7 @@ def parse_file(datafile):
  
     # instructor way to get the max value (column 1) and corresponding date field (column 0)
     # build a list from the Sheet class
+    # get the slice of rows from the data column
     myCOASTColumn = ercotSheet0.col_values(1, start_rowx=1, end_rowx=ercotSheet0.nrows)
     
     print("\t\tmyCOASTColumn.__class__.__name__ is {}\n".format(myCOASTColumn.__class__.__name__)) # list
@@ -108,13 +112,13 @@ def parse_file(datafile):
     print("\t\tmyCOASTColumn.index(max(myCOASTColumn) is {}\n".format(myCOASTColumn.index(max(myCOASTColumn)))) # 5391
     
     # use list index to get the max row in the sheet - value - make sure in right row  
-    print("\t\tercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 1) is {}".format(ercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 1))) 
+    print("\t\tercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 1) is {}".format(ercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 1))) # max value 18779.025510000003
     # get the date from the right row, column 0
-    print("\t\tercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 0) is {}\n".format(ercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 0))) 
+    print("\t\tercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 0) is {}\n".format(ercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 0))) # date 41499.708333333336
     
     # convert the time and priint it
     maxtime = xlrd.xldate_as_tuple(ercotSheet0.cell_value(myCOASTColumn.index(max(myCOASTColumn)) + 1, 0), 0)
-    print("\t\tmaxtime is {} (2013, 8, 13, 17, 0, 0)\n".format(maxtime)) 
+    print("\t\tmaxtime is {} (2013, 8, 13, 17, 0, 0)\n".format(maxtime)) # (2013, 8, 13, 17, 0, 0) (2013, 8, 13, 17, 0, 0)
     # instructor way to get the max value (column 1) and corresponding date field (column 0)
 
     # calculate the average 
@@ -123,6 +127,7 @@ def parse_file(datafile):
     print("\t\tmyCOASTColumn[7294] is {}".format(myCOASTColumn[7294])) 
     print("\t\tnumpy.average(myCOASTColumn) is {}\n".format(numpy.average(myCOASTColumn))) # 10976.9334606798
 
+    # dictionary definition
     data = {
             'maxtime': (0, 0, 0, 0, 0, 0),
             'maxvalue': 0,
@@ -131,8 +136,7 @@ def parse_file(datafile):
             'avgcoast': 0
     }
     
-    #print("\t\tdata['avgcoast'].__class__.__name__ is {}".format(data['avgcoast'].__class__.__name__)) # int
-
+    # populate the dictionary
     data["maxtime"]  = xlrd.xldate_as_tuple(ercotSheet0.cell_value(largestDataRow, 0), 0)
     data["maxvalue"] = round(largestCOASTFloat, 10)
     data["mintime"]  = xlrd.xldate_as_tuple(ercotSheet0.cell_value(smallestDataRow, 0), 0)
