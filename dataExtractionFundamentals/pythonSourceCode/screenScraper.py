@@ -149,7 +149,7 @@ def getExample(mySoup):
     myRTSessionViewStateGeneratorValue = myRTSessionViewStateGenerator['value']  
     print("\t\tmyRTSessionViewStateGeneratorValue is {}".format(myRTSessionViewStateGeneratorValue[:11])) # 
 
-    # Now use the required captured parameter value pairs
+    # Now USE the required CAPTURED parameter value pairs
     # This worked 
     r = s.post('http://www.transtats.bts.gov/Data_Elements.aspx?Data=2',
                       data = {
