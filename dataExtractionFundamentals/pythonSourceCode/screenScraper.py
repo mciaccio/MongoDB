@@ -128,11 +128,10 @@ def getExample(mySoup):
     # Please click TranStats on the sidebar to start from the TranStats homepage.
     # If the problem persists, please contact ritainfo@dot.gov.
     
-    # Finally the real work - Use this Example 
+    # Finally the real work - Use this example 
     # Fix the above error using session 
-    # This time session - Maintain session state this worked
-    # This time session get and session post
-    # First use the generic URL - capture the parameter value pairs
+    # Maintain session state this worked
+    # First use the generic URL - CAPTURE the parameter value pairs
     s = requests.Session()
     r = s.get('http://www.transtats.bts.gov/Data_Elements.aspx?Data=2',)
     
