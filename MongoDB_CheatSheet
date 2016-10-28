@@ -1,0 +1,90 @@
+
+MongoDB - Document Database
+	JSON Object
+	Python Dictionary
+	
+
+    print("foundCities.count() - {}".format(get_city(db)))
+    print("type(get_city(db) - {}".format(type(get_city(db))))
+    
+    print(" x - {}".format(x))
+    print("x - {}".format(type(x))
+    
+    print(" oneFoundA - {}".format(oneFoundA))
+    print("oneFoundA - {}".format(type(oneFoundA))
+    
+#     WORKED    
+    queryDoc = {    'color'  :  'Green', 'height' : '5.0'  }
+    projectionDoc = {'name' : 1, 'color' : 1, '_id' : 1, 'height' : 1 }
+    oneFoundA = db.cities.find(queryDoc, projectionDoc)
+
+#    WORKED
+    #oneFoundA = db.cities.find(   {    'color'  :  'Green', 'height' : '5.0'  },   {'name' : 1, 'color' : 1, '_id' : 1, 'height' : 1 }   )
+    
+#    WORKED 
+#     oneFoundA = db.cities.find(    {  'color'  :  'Green'  , 'height'  :  '5.0'  }  , projectionDoc    )
+
+#    WORKED 
+#    oneFoundA = db.cities.find(    queryDoc  , {'name' : 1, 'color' : 1, '_id' : 1, 'height' : 1 }
+
+
+# WORKED udacity.com BROWSER
+# insert a python list of python Dictionaries into the autos Collection 
+db.autos.insert_many(data)
+
+
+# try catch except clause exceptions python
+# BAD duplicate ObjectId
+myCitiesList = [
+	{'color': 'Red', '_id': ObjectId('580d1be5bcd0b65067bfa123'), 'height': '6.0', 'name': 'Fremont'},
+	{'color': 'Red', '_id': ObjectId('580d1be5bcd0b65067bfa123'), 'height': '6.0', 'name': 'Wahoo'}
+]
+    
+
+*** import required ***
+from pymongo.errors import BulkWriteError
+    try:
+        db.cities.insert_many(myCitiesList)
+    except BulkWriteError as bwe:
+        print("bwe - {}".format(bwe))
+        print("bwe - {}".format(type(bwe)))
+        pprint.pprint(bwe.details)  
+        
+        {'nInserted': 0,
+ 'nMatched': 0,
+ 'nModified': 0,
+ 'nRemoved': 0,
+ 'nUpserted': 0,
+ 'upserted': [],
+ 'writeConcernErrors': [],
+ 'writeErrors': [{'code': 11000,
+                  'errmsg': 'E11000 duplicate key error collection: '
+                            'examples.cities index: _id_ dup key: { : '
+                            "ObjectId('580d1be5bcd0b65067bfa123') }",
+                  'index': 0,
+                  'op': {'_id': ObjectId('580d1be5bcd0b65067bfa123'),
+                         'color': 'Red',
+                         'height': '6.0',
+                         'name': 'Fremont'}}]}
+                         
+# MongoDB mongoimport command line 
+$ pwd
+/Users/Menfi/Documents/gitBaseDirectory/MongoDB/dataExtractionFundamentals/dataFiles
+
+$ cat myJSON 
+{'height': '5.0', 'name': 'Bayshore', 'color': 'Purple'}
+
+$ mongoimport -d examples -c cities --file myJSON ; echo $?
+2016-10-23T16:23:07.423-0500	connected to: localhost
+2016-10-23T16:23:07.424-0500	imported 1 document
+0
+
+city - {'height': '5.0', 'name': 'Bayshore', 'color': 'Purple', '_id': ObjectId('580d2a3b7659aaaf9c2d52ee')}
+
+
+
+
+
+ 
+
+ 
