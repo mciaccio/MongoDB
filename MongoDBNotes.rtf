@@ -1,29 +1,370 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red36\green36\blue36;}
-{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
-{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
-\margl1440\margr1440\vieww18580\viewh7440\viewkind0
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\froman\fcharset0 Times-Roman;
+\f3\fmodern\fcharset0 Courier;\f4\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red36\green36\blue36;\red255\green0\blue0;\red0\green170\blue0;
+\red128\green0\blue0;\red26\green26\blue26;\red242\green244\blue245;\red83\green83\blue83;\red50\green91\blue142;
+\red0\green0\blue0;}
+\margl1440\margr1440\vieww28620\viewh14060\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 \
-Identify Errors or outliers in the data.\
-Find missing values.\
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
 \
-\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
-\ls1\ilvl0
-\fs28 \cf2 \expnd0\expndtw0\kerning0
-BeatlesDiscography.csv\
-\
-MongoDB Course Material located here \
+\pard\tx720\pardeftab720\partightenfactor0
+\cf2 MongoDB Course Material located here \
 https://www.udacity.com/wiki/ud032?_ga=1.253328265.1817760303.1473220639#!#datasets-used-in-this-course\
-Parsing cvs to dictionary \
-Create one dictionary for each item in the file \
+https://www.udacity.com/wiki/ud032?&_ga=1.256806607.578638853.1473962320#!#datasets-used-in-this-course\
+\
+https://www.udacity.com/wiki/ud032?_ga=1.253328265.1817760303.1473220639#!#lesson-4-working-with-mongodb\
+\
+Aggregation Expression Operators Page\
+https://docs.mongodb.com/v3.2/reference/operator/aggregation/#expression-operators\
+\
+github\
+https://github.com/udacity/ud032\
 \
 Python Library url\
 https://docs.python.org/3/library/\
 \
 ETL Software Extraction Transformation Load \
 \
+19 October 2016 \
+https://www.mongodb.com/download-center#community - download MongoDB\
+https://docs.mongodb.com/manual/installation/ - install MongoDB\
+https://docs.mongodb.com/manual/applications/drivers/ - MongoDB Drivers and Client Libraries\
+http://api.mongodb.com/python/current/installation.html - PyMongo installation instructions\
 \
-}
+***\
+*** pip\
+*** \
+\pard\pardeftab720\partightenfactor0
+\cf2 sudo -H pip install -U pip \
+Requirement already up-to-date: pip in /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages\
+\
+pip -V\
+pip 8.1.2 from /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages (python 3.5)\
+\
+pip3 -V\
+pip 8.1.2 from /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages (python 3.5)\
+\
+pip3.5 -V\
+pip 8.1.2 from /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages (python 3.5)\
+\
+\
+***\
+*** search for pymongo (not the Mac)\
+***\
+sudo -H pip search pymongo \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 pymongo (3.3.0)                         - Python driver for MongoDB <http://www.mongodb.org>\
+\
+\
+***\
+*** install pymongo\
+*** \
+\
+sudo -H pip install pymongo\
+Password:\
+Collecting pymongo\
+  Downloading pymongo-3.3.0-cp35-cp35m-macosx_10_6_intel.whl (273kB)\
+    100% |\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 276kB 2.3MB/s \
+Installing collected packages: pymongo\
+Successfully installed pymongo-3.3.0\
+\
+sudo -H pip install -U pymongo\
+\
+sudo -H pip install -U pymongo\
+Requirement already up-to-date: pymongo in /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages\
+\
+\
+***\
+*** install brew - Homebrew\
+*** \
+\
+NO!\
+sudo -H /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ; echo $?\
+\
+YES!\
+ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ; echo $?\
+\
+==> Installation successful!\
+==> Next steps\
+Run `brew help` to get started\
+Further documentation: https://git.io/brew-docs\
+0\
+\
+\
+***\
+*** install mongodb\
+*** \
+\
+NO!!\
+sudo -H brew install mongodb\
+YES!!\
+brew install mongodb\
+\
+==> Installation successful!\
+==> Next steps\
+Run `brew help` to get started\
+Further documentation: https://git.io/brew-docs\
+0\
+\
+==> Caveats\
+To have launchd start mongodb now and restart at login:\
+  brew services start mongodb\
+Or, if you don't want/need a background service you can just run:\
+  mongod --config /usr/local/etc/mongod.conf <\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+ls -l /usr/local/etc/mongod.conf \
+-rw-r--r--  1 Menfi  admin  161 Oct 19 12:22 /usr/local/etc/mongod.conf\
+\
+cat /usr/local/etc/mongod.conf\
+systemLog:\
+  destination: file\
+  path: /usr/local/var/log/mongodb/mongo.log\
+  logAppend: true\
+storage:\
+  dbPath: /usr/local/var/mongodb\
+net:\
+  bindIp: 127.0.0.1\
+\
+/usr/local/var/log/mongodb/output.log \
+\
+ps -aef \
+10842  4390   0 12:33PM ttys000    0:00.82 mongod --config /usr/local/etc/mongod.conf\
+\
+***\
+*** start\
+***\
+\
+nohup  mongod --config /usr/local/etc/mongod.conf > /tmp/mongoOut & \
+\
+***\
+*** start - stop  -  which brew - /usr/local/bin/brew\
+***\
+brew services start mongodb\
+==> Successfully started `mongodb` (label: homebrew.mxcl.mongodb)\
+[1]+  Done                    nohup mongod --config /usr/local/etc/mongod.conf > /tmp/mongoOut\
+\
+brew services stop mongodb\
+Stopping `mongodb`... (might take a while)\
+==> Successfully stopped `mongodb` (label: homebrew.mxcl.mongodb)\
+\
+\
+\
+mongo\
+MongoDB shell version: 3.2.10\
+connecting to: test\
+Server has startup warnings: \
+2016-10-19T12:43:20.256-0500 I CONTROL  [initandlisten] \
+2016-10-19T12:43:20.256-0500 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000\
+> quit()\
+\
+\
+mongo -version\
+mongo --help\
+\
+\
+# Database  -d examples, -c Collection myautos2\
+mongoimport -d examples  -c myautos2 -- file autos.json\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 # imported twitter database into MongoDB\
+# successfully imported file into MongoDB\
+# Menfi (master *) dataFiles $ mongoimport --db twitter  --type json --file ./twitter.json \
+# 2016-10-26T23:29:51.417-0500    \cf3 no collection specified\cf2 \
+# 2016-10-26T23:29:51.418-0500    \cf3 using filename 'twitter' as collection\cf2 \
+# 2016-10-26T23:29:51.420-0500    connected to: localhost\
+# 2016-10-26T23:29:54.420-0500    [#######.................] twitter.twitter    25.8MB/88.0MB (29.3%)\
+# 2016-10-26T23:29:57.420-0500    [################........] twitter.twitter    60.0MB/88.0MB (68.2%)\
+# 2016-10-26T23:29:59.654-0500    [########################] twitter.twitter    88.0MB/88.0MB (100.0%)\
+# 2016-10-26T23:29:59.654-0500    imported 51428 documents\
+    \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 \
+mongoDB inequality operators\
+$gt, $lt, $gte, lte, $ne\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 db.cities.find().count()\
+\
+query = \{\'93foundingDate\'94 : \{\'93$gte\'94 : datetime(1837, 1, 1), \'93$lte\'94 : datetime(1837, 1, 1)\}  \
+cities = db.cities.find(query)\
+\
+\
+***\
+*** 22 October 2016\
+***\
+\
+ \
+Dictionary \
+db.cities.find_one(\{  "_id" : ObjectId("580aa7d6bcd0b645ff9e0710")  \})\
+\
+db.cities.remove() - removes all entries from the Collection\
+\
+Works dropped the Collection from the Database\
+db.cities.drop()\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+# Conditional NOT brute  force remove WORKED
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+ 
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+db.cities.remove
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 (\{\cf4 'color'\cf0  : \{\cf4 '$exists'\cf0  : \cf5 0\cf0 \} \} )\
+\
+$gt, $lt, $gte, $lte, $ne\
+\
+
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+***\
+*** *** aggregation framework *** MongoDB builtin analytics tools ***\
+*** aggregate aggregation working examples\
+***\
+***\
+***\
+aggregate example \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 db.twitter.aggregate(pipeline):
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+example from class video - this was a quiz answer that was submitted and was correct \
+ pipeline.append (\{  "$group" : \{  "_id" : "$source",  "count" : \{  "$sum" : 1  \}  \}  \}  )      \
+ pipeline.append (  \{  "$sort" : \{"count" : -1 \}  \}  )\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 result = db.tweets.aggregate ([ \
+\{  "$group" : \{  "_id" : "$user.screen_name",  "count" : \{  "$sum" : 1  \}  \}  \} ,  \
+\{  "$sort" : \{"count" : -1 \} \}  ]  )\
+\
+$project\
+$group\
+$sort\
+$match - filters Documents\
+$skip n at the beginning \
+$limit get the first n documents \
+$unwind split out list - then can $group on the individual elements, values of the list\
+\
+aggregation framework example \
+syntax compliant\
+match first stage of pipeline  \
+4 stages total - match - project - sort - limit \
+\pard\pardeftab720\partightenfactor0
+\cf0 ([\{ \cf4 '$match'\cf0  : \{ \cf4 'user.friends_count'\cf0  : \{ \cf4 '$\ul gt\ulnone '\cf0  :  \cf5 0\cf0     \} ,  \cf4 'user.followers_count'\cf0  :  \{ \cf4 "$\ul gt\ulnone "\cf0    :  \cf5 0\cf0     \}  \} \},\
+\{ \cf4 '$project'\cf0  : \{  \cf4 'ratio'\cf0  : \{  \cf4 '$divide'\cf0  : [\cf4 '$user.followers_count'\cf0 ,  \cf4 '$user.friends_count'\cf0 ]   \}, \cf4 'screen_name'\cf0  : \cf4 '$user.screen_name'\cf0   \} \},\
+\{  \cf4 "$sort"\cf0  : \{ \cf4 "ratio"\cf0  : -\cf5 1\cf0   \} \} , \{  \cf4 "$limit"\cf0  : \cf5 1\cf0  \}])\
+\
+pipeline = [ ]\
+    \
+pipeline.append(\{ '$match' : \{'user.time_zone' : 'Brasilia', 'user.statuses_count' : \{'$gte' : 100 \} \}  \})\
+pipeline.append(\{ '$project' : \{ '_id' : 0,  'followers' : '$user.followers_count',\
+                                 'time_zoneabc' : '$user.time_zone', 'tweets' : '$user.statuses_count',\
+                                 'screen_name' : '$user.screen_name'    \} \})\
+pipeline.append( \{"$sort" : \{ "followers" : -1  \} \} )\
+pipeline.append( \{'$limit' : 1  \}  )\
+    \
+\
+\
+u'time_zone': u'Brasilia',\
+u'statuses_count': 3504,\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0  \{'$match' : \{user.timezone : 'Brasilia' \}\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf6 \cb7 \expnd0\expndtw0\kerning0
+[ \{ $match \cf8 :\cf6   \{ author \cf8 :\cf6  \cf9 "dave"\cf6  \} \} ]\
+\
+working examples from the class video\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 aggregation queries examples \
+pipeline - elements of a list past to \'93aggregate\'94\
+documents passed through the pipeline or on through the list entries passed to \cf3 aggregate(\'85)\
+\cf0 input for the $sort operator are the documents output by the $group operator\cf3  \cf0 \
+result = db.tweets.\cf3 aggregate\cf0  = [\{\cf4 '$\cf3 group\cf4 '\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.screen_name'\cf0 , \cf4 'count'\cf0  : \{\cf4 '$sum'\cf0  : \cf5 1\cf0 \} \} \},\
+\{\cf4 '$\cf3 sort\cf4 '\cf0  : \{\cf4 'count'\cf0  : -\cf5 1\cf0 \} \}]\
+\
+Where \cf4 '$user.screen_name' \cf0 is the same add up, sum up the count\
+assigns the \cf4 '$user.screen_name' to \cf0 \'92_id\'92 then sums or tallies them for the total count \
+Group tweets by user, and count	\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f2\fs24 \cf10 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec10 The 
+\f3 _id
+\f2  field is 
+\i mandatory
+\f1\i0\fs22 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \{\cf4 '$group'\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.screen_name'\cf0 , \cf4 'count'\cf0  : \{\cf4 '$sum'\cf0  : \cf5 1\cf0 \} \} \}\
+\
+Sort descending  \
+\{\cf4 '$sort'\cf0  : \{\cf4 'count'\cf0  : -\cf5 1\cf0 \} \}\
+\
+unwind example\
+\pard\pardeftab720\partightenfactor0
+\cf0 [\{\cf4 '$unwind'\cf0  : \cf4 '$entities.user.mentions'\cf0 \},\
+\{\cf4 '$group'\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.scren_name'\cf0 , \cf4 'count'\cf0  : \{ \cf4 '$sum'\cf0  : \cf5 1\cf0  \} \} \},\
+\{  \cf4 "$sort"\cf0  : \{ \cf4 "ratio"\cf0  : -\cf5 1\cf0   \} \} , \
+\{  \cf4 "$limit"\cf0  : \cf5 1\cf0  \}\
+]\
+\
+\
+    pipeline.append(\{'$match' : \{'country' : 'India'\} \} )\
+    pipeline.append(\{'$unwind' : '$isPartOf'\})\
+    pipeline.append(\{'$group' : \{'_id' : '$isPartOf', 'count' : \{ '$sum' : 1 \} \} \}) \
+    pipeline.append(\{ "$sort" : \{ "count" : -1  \} \})\
+\
+MongoDB find command \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4 \cf0 \CocoaLigature0 db.tweets.find
+\f1 \CocoaLigature1 (\{\cf4 'entities.user_mentions'\cf0  : \{\cf4 '$size'\cf0  : \cf5 3\cf0 \} \})\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf6 \cb7 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 	 }
