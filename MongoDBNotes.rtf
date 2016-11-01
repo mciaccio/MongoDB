@@ -1,10 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\froman\fcharset0 Times-Roman;
-\f3\fmodern\fcharset0 Courier;\f4\fnil\fcharset0 Menlo-Regular;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
 {\colortbl;\red255\green255\blue255;\red36\green36\blue36;\red255\green0\blue0;\red0\green170\blue0;
-\red128\green0\blue0;\red26\green26\blue26;\red242\green244\blue245;\red83\green83\blue83;\red50\green91\blue142;
-\red0\green0\blue0;}
-\margl1440\margr1440\vieww28620\viewh14060\viewkind0
+\red128\green0\blue0;\red26\green26\blue26;\red242\green244\blue245;}
+\margl1440\margr1440\vieww28620\viewh8700\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf2 \expnd0\expndtw0\kerning0
@@ -18,6 +16,7 @@ https://www.udacity.com/wiki/ud032?_ga=1.253328265.1817760303.1473220639#!#lesso
 \
 Aggregation Expression Operators Page\
 https://docs.mongodb.com/v3.2/reference/operator/aggregation/#expression-operators\
+https://docs.mongodb.com/v3.2/reference/operator/aggregation/\
 \
 github\
 https://github.com/udacity/ud032\
@@ -227,114 +226,60 @@ $gt, $lt, $gte, $lte, $ne\
 ***\
 ***\
 ***\
-aggregate example \
+ See AggregationFrameworkExamples.py \
+\
+
+\fs30 ***\
+*** MongoDB indexes ensure_index - pymongo syntax, ensureIndex - MongoDB shell syntax - type mongo at the unix terminal prompt \
+***\
+First build the index \
+tg - field name - could be name, age  etc \
+build index on the 'tg' field\
+db.ensureIndex(\{'tg' : 1\})\
+\
+before the index was built this find took time\
+db.nodes.find(\{'tg' : \{'k' : 'name', 'v': 'Giordanos'\}\})\
+after the index was built this find was almost instantaneous\
+\
+geospatial index\
+location : [x, y] - the x, y array is the required syntax \
+call ensure index on the location field\
+\
+loc = [  float(attrs['lat']),  float(attrs['lon'])  ]\
+\
+.ensureIndex('location') - direction needed too\
+geospatial queries use the $near operator\
+\
+db.nodes.find
+\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 (  \{  \cf4 '\ul loc\ulnone '\cf0  : \{   \cf4 '$near'\cf0  :  [\cf5 41.94\cf0 , -\cf5 87.65\cf0 ], \cf4 '\ul tg\ulnone '\cf0  : \{\cf4 '$exists'\cf0  : \cf5 1\cf0 \} \}     \})\
+
+\f0\fs30 \cf2 \expnd0\expndtw0\kerning0
+\
+\
+ \
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \
+ 
+\f1\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+  
+\fs28 \
 \pard\pardeftab720\partightenfactor0
 
-\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 db.twitter.aggregate(pipeline):
-\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
-\
-\pard\pardeftab720\partightenfactor0
-\cf2 \
-example from class video - this was a quiz answer that was submitted and was correct \
- pipeline.append (\{  "$group" : \{  "_id" : "$source",  "count" : \{  "$sum" : 1  \}  \}  \}  )      \
- pipeline.append (  \{  "$sort" : \{"count" : -1 \}  \}  )\
-\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\f1\fs22 \cf0 \kerning1\expnd0\expndtw0 result = db.tweets.aggregate ([ \
-\{  "$group" : \{  "_id" : "$user.screen_name",  "count" : \{  "$sum" : 1  \}  \}  \} ,  \
-\{  "$sort" : \{"count" : -1 \} \}  ]  )\
-\
-$project\
-$group\
-$sort\
-$match - filters Documents\
-$skip n at the beginning \
-$limit get the first n documents \
-$unwind split out list - then can $group on the individual elements, values of the list\
-\
-aggregation framework example \
-syntax compliant\
-match first stage of pipeline  \
-4 stages total - match - project - sort - limit \
-\pard\pardeftab720\partightenfactor0
-\cf0 ([\{ \cf4 '$match'\cf0  : \{ \cf4 'user.friends_count'\cf0  : \{ \cf4 '$\ul gt\ulnone '\cf0  :  \cf5 0\cf0     \} ,  \cf4 'user.followers_count'\cf0  :  \{ \cf4 "$\ul gt\ulnone "\cf0    :  \cf5 0\cf0     \}  \} \},\
-\{ \cf4 '$project'\cf0  : \{  \cf4 'ratio'\cf0  : \{  \cf4 '$divide'\cf0  : [\cf4 '$user.followers_count'\cf0 ,  \cf4 '$user.friends_count'\cf0 ]   \}, \cf4 'screen_name'\cf0  : \cf4 '$user.screen_name'\cf0   \} \},\
-\{  \cf4 "$sort"\cf0  : \{ \cf4 "ratio"\cf0  : -\cf5 1\cf0   \} \} , \{  \cf4 "$limit"\cf0  : \cf5 1\cf0  \}])\
-\
-pipeline = [ ]\
-    \
-pipeline.append(\{ '$match' : \{'user.time_zone' : 'Brasilia', 'user.statuses_count' : \{'$gte' : 100 \} \}  \})\
-pipeline.append(\{ '$project' : \{ '_id' : 0,  'followers' : '$user.followers_count',\
-                                 'time_zoneabc' : '$user.time_zone', 'tweets' : '$user.statuses_count',\
-                                 'screen_name' : '$user.screen_name'    \} \})\
-pipeline.append( \{"$sort" : \{ "followers" : -1  \} \} )\
-pipeline.append( \{'$limit' : 1  \}  )\
-    \
-\
-\
-u'time_zone': u'Brasilia',\
-u'statuses_count': 3504,\
-\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-\cf0  \{'$match' : \{user.timezone : 'Brasilia' \}\
+\fs22 \cf0 \
 \pard\pardeftab720\partightenfactor0
 
-\f0\fs28 \cf6 \cb7 \expnd0\expndtw0\kerning0
-[ \{ $match \cf8 :\cf6   \{ author \cf8 :\cf6  \cf9 "dave"\cf6  \} \} ]\
+\fs28 \cf0 \
 \
-working examples from the class video\
+\
+\
 \pard\pardeftab720\partightenfactor0
 
-\f1\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 aggregation queries examples \
-pipeline - elements of a list past to \'93aggregate\'94\
-documents passed through the pipeline or on through the list entries passed to \cf3 aggregate(\'85)\
-\cf0 input for the $sort operator are the documents output by the $group operator\cf3  \cf0 \
-result = db.tweets.\cf3 aggregate\cf0  = [\{\cf4 '$\cf3 group\cf4 '\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.screen_name'\cf0 , \cf4 'count'\cf0  : \{\cf4 '$sum'\cf0  : \cf5 1\cf0 \} \} \},\
-\{\cf4 '$\cf3 sort\cf4 '\cf0  : \{\cf4 'count'\cf0  : -\cf5 1\cf0 \} \}]\
-\
-Where \cf4 '$user.screen_name' \cf0 is the same add up, sum up the count\
-assigns the \cf4 '$user.screen_name' to \cf0 \'92_id\'92 then sums or tallies them for the total count \
-Group tweets by user, and count	\
-\pard\pardeftab720\sl280\partightenfactor0
-
-\f2\fs24 \cf10 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec10 The 
-\f3 _id
-\f2  field is 
-\i mandatory
-\f1\i0\fs22 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
-\pard\pardeftab720\partightenfactor0
-\cf0 \{\cf4 '$group'\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.screen_name'\cf0 , \cf4 'count'\cf0  : \{\cf4 '$sum'\cf0  : \cf5 1\cf0 \} \} \}\
-\
-Sort descending  \
-\{\cf4 '$sort'\cf0  : \{\cf4 'count'\cf0  : -\cf5 1\cf0 \} \}\
-\
-unwind example\
-\pard\pardeftab720\partightenfactor0
-\cf0 [\{\cf4 '$unwind'\cf0  : \cf4 '$entities.user.mentions'\cf0 \},\
-\{\cf4 '$group'\cf0  : \{\cf4 '_id'\cf0  : \cf4 '$user.scren_name'\cf0 , \cf4 'count'\cf0  : \{ \cf4 '$sum'\cf0  : \cf5 1\cf0  \} \} \},\
-\{  \cf4 "$sort"\cf0  : \{ \cf4 "ratio"\cf0  : -\cf5 1\cf0   \} \} , \
-\{  \cf4 "$limit"\cf0  : \cf5 1\cf0  \}\
-]\
+\fs22 \cf0 \
 \
 \
-    pipeline.append(\{'$match' : \{'country' : 'India'\} \} )\
-    pipeline.append(\{'$unwind' : '$isPartOf'\})\
-    pipeline.append(\{'$group' : \{'_id' : '$isPartOf', 'count' : \{ '$sum' : 1 \} \} \}) \
-    pipeline.append(\{ "$sort" : \{ "count" : -1  \} \})\
 \
-MongoDB find command \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\f4 \cf0 \CocoaLigature0 db.tweets.find
-\f1 \CocoaLigature1 (\{\cf4 'entities.user_mentions'\cf0  : \{\cf4 '$size'\cf0  : \cf5 3\cf0 \} \})\
-\pard\pardeftab720\partightenfactor0
-\cf0 \
-\pard\pardeftab720\partightenfactor0
-\cf0 \
-\pard\pardeftab720\partightenfactor0
-\cf0 \
 \
 \pard\pardeftab720\partightenfactor0
 
