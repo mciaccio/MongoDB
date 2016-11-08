@@ -1,0 +1,14 @@
+
+Regular Expression Examples 
+
+# "lower", for tags that contain only lowercase letters and are valid,
+lower = re.compile(r'^([a-z]|_)*$')
+
+# "lower_colon", for otherwise valid tags with a colon in their names,
+lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
+
+# problemchars", for tags with problematic characters
+problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
+
+# last word in street name - Ave., Ave, Avenue for example
+# street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
