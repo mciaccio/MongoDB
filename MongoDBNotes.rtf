@@ -2,7 +2,7 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
 {\colortbl;\red255\green255\blue255;\red36\green36\blue36;\red255\green0\blue0;\red0\green170\blue0;
 \red128\green0\blue0;\red26\green26\blue26;\red242\green244\blue245;}
-\margl1440\margr1440\vieww28620\viewh8700\viewkind0
+\margl1440\margr1440\vieww28620\viewh7580\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf2 \expnd0\expndtw0\kerning0
@@ -228,8 +228,9 @@ $gt, $lt, $gte, $lte, $ne\
 ***\
  See AggregationFrameworkExamples.py \
 \
+\pard\pardeftab720\partightenfactor0
 
-\fs30 ***\
+\fs30 \cf2 ***\
 *** MongoDB indexes ensure_index - pymongo syntax, ensureIndex - MongoDB shell syntax - type mongo at the unix terminal prompt \
 ***\
 First build the index \
@@ -252,6 +253,18 @@ geospatial queries use the $near operator\
 \
 db.nodes.find
 \f1\fs22 \cf0 \kerning1\expnd0\expndtw0 (  \{  \cf4 '\ul loc\ulnone '\cf0  : \{   \cf4 '$near'\cf0  :  [\cf5 41.94\cf0 , -\cf5 87.65\cf0 ], \cf4 '\ul tg\ulnone '\cf0  : \{\cf4 '$exists'\cf0  : \cf5 1\cf0 \} \}     \})\
+\
+***\
+*** 8 November 2016\
+***\
+\
+# iter, iterate through nested xml tags\
+if elem.tag =="way":\
+	for tag in elem.iter("tag"): # <tag k="addr:street" v="North Lincoln Ave"/>\
+		pass\
+\
+\
+\
 
 \f0\fs30 \cf2 \expnd0\expndtw0\kerning0
 \
